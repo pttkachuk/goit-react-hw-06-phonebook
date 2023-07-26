@@ -8,11 +8,11 @@ const searchBarSlice = createSlice({
     name: 'filter',
     initialState: initialState,
     reducers: {
-        filter: (state, action) => {
+        setFilter: (state, action) => {
             state.filter = action.payload.toLowerCase();
         },
     },
 });
 
-export const { filter } = searchBarSlice.actions;
+export const { setFilter } = searchBarSlice.actions;
 export const searchBarReducer = searchBarSlice.reducer;
