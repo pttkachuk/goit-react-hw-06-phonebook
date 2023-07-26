@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { contactsReducer } from './contactsSlice';
-import { filterReducer } from './searchBarSlice';
+import { searchBarReducer } from './searchBarSlice';
 import {
     persistStore,
     persistReducer,
@@ -26,7 +26,7 @@ const persistedReducer = persistReducer(persistConfig, contactsReducer);
 export const store = configureStore({
     reducer: {
         contacts: persistedReducer,
-        filter: filterReducer,
+        filter: searchBarReducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
