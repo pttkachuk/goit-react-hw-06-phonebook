@@ -14,5 +14,5 @@ const searchBarSlice = createSlice({
     },
 });
 
-export const { filter } = filterSlice.actions;
-export const filterReducer = filterSlice.reducer;
+export const { filter } = searchBarSlice.actions;
+export const filterReducer = searchBarSlice.reducer;
