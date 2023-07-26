@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   StyledBtn,
   StyledContactDiv,
@@ -9,11 +9,13 @@ import {
   StyledSpan,
 } from './ContactFormStyled';
 import { addContacts } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const onNameChange = event => {
@@ -25,7 +27,13 @@ export default function ContactForm() {
   };
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(addContacts({ name, number }));
+    if (
+      contacts.some(value => value.name.toLowerCase() === name.toLowerCase())
+    ) {
+      alert(`${name} is alredy in contacts`);
+    } else {
+      dispatch(addContacts({ name, number }));
+    }
     reset();
   };
 
